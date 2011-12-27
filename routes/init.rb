@@ -45,7 +45,7 @@ module Leaky #:nodoc:
     # the logic of the submodules defined on other files.
     module Base
       ##
-      # Helper method for GET HTTP requests.
+      # Helper method for HTTP GET requests.
       #
       # @param *Sinatra::Base* obj The server of this application.
       #
