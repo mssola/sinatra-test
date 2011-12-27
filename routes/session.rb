@@ -19,20 +19,20 @@
 
 module Leaky::Routes #:nodoc:
   ##
-  # Handle all the routing of the most "standard" navigation features.
-  module Main
+  # Handle all the routing behind sessions.
+  module Session
     extend Leaky::Routes::Base
 
     ##
-    # When included, define all the main routes.
+    # When included, define all the routing behind sessions.
     #
     # @param *Sinatra::Base* obj The server of this application.
     def self.included(obj)
-      leaked_get(obj, :index)
-      leaked_get(obj, :blog)
-      leaked_get(obj, :snippets)
-      leaked_get(obj, :contact)
+      leaked_get(obj, :login)
+
+      obj.post '/login' do
+        puts 'TODO'
+      end
     end
   end
-end
-
+end 

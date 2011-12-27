@@ -24,8 +24,10 @@
   </div>
   <div class="wrapper">
     <div id="flash_container">
-      <% @flash.each do |key, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{key}", class: :flashy %>
+      <% if defined? @flash %>
+        <% @flash.each do |key, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{key}", class: :flashy %>
+        <% end %>
       <% end %>
     </div>
     <article>

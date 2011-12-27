@@ -9,4 +9,4 @@ require './server'
 
 use Rack::Static, :urls => ['favicon.ico', '/stylesheets', '/images',
                             '/javascripts, /robots.txt'], :root => 'public'
-run LeakyServer
+run Leaky::Server

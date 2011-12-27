@@ -1,6 +1,7 @@
 
 
 module Leaky
+  # TODO
   class Flash
     include Enumerable
 
