@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <title>Leaky</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <%= css :app, :media => 'screen' %>
+  <%= js  :app %>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="logo">
+        <a href="http://localhost:3000/"><img src="images/logo.png" border="0" /></a>
+      </div>
+      <nav class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/snippets">Code Snippets</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </nav>
+    </header>
+  </div>
+  <div class="wrapper">
+    <div id="flash_container">
+      <% @flash.each do |key, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{key}", class: :flashy %>
+      <% end %>
+    </div>
+    <article>
+      <%= yield %>
+    </article>
+    <br clear="all" />
+  </div>
+  <footer>
+    <div class="wrapper">
+      I'm a footer
+    </div>
+  </footer>
+</body>
+</html>

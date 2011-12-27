@@ -1,0 +1,79 @@
+
+
+.wrapper {
+  width:796px;
+  margin:auto;
+  padding-left:48px;
+  padding-right:48px;
+}
+
+.menu {
+  float:right;
+  text-align:right;
+}
+
+.menu li {
+  display:inline;
+  text-transform:lowercase;
+  margin-right:15px;
+  font-weight:bold;
+}
+
+.menu a:link, .menu a:visited {
+  font-size: 1.0em;
+  color:rgba(0,0,0,0.75);
+  text-shadow: 0px 1px 1px rgba(255,255,255,0.25);
+  text-decoration:none;
+}
+
+.menu a:hover, .menu li.current a, .menu .current a {
+  color:blue;
+  text-decoration:none;
+}
+
+.menu li:last-child {
+  margin-right:0px;
+}
+
+.logo {
+  margin-left: -10px;
+  float:left;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+footer {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  display: block;
+  margin-top:64px;
+  z-index: 1000;
+
+  background: #f00;
+  background-color: rgba(0,0,0,0.35);
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+footer .wrapper{
+  padding: 0;
+  height: 92px;
+}
+
+.error_dialog {
+  width: 25em;
+  padding: 0 4em;
+  margin: 2em auto 0 auto;
+  border: 1px solid #ccc;
+  border-right-color: #999;
+  border-bottom-color: #999;
+}
+
+.error_dialog h1 {
+  font-size: 100%;
+  color: #f00;
+  line-height: 1.5em;
+}

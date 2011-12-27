@@ -1,0 +1,6 @@
+= Leaky
+
+This is a Sinatra test application. If you want to run it locally,
+just perform the following command:
+
+  $ rackup config.ru
