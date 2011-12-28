@@ -33,6 +33,7 @@ module Leaky #:nodoc:
       obj.send :include, Leaky::Routes::Session
 
       obj.not_found do
+        session[:flash] = nil
         erb :not_found
       end
     end
@@ -53,7 +54,8 @@ module Leaky #:nodoc:
       def leaked_get(obj, action)
         aux = (action == :index) ? '' : action.to_s
         obj.get "/#{aux}" do
-          @flash = []
+          @flash = session[:flash]
+          session[:flash] = nil
           erb action
         end
       end

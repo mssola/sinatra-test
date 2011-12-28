@@ -20,6 +20,7 @@
 require 'sinatra'
 require 'sinatra/assetpack'
 
+
 $:.unshift(File.dirname(__FILE__))
 require_relative 'routes/init'
 require_relative 'models/user'
@@ -31,6 +32,7 @@ require_relative 'models/user'
 # all the basic stuff of this application so we can be happy.
 class Leaky::Server < Sinatra::Base
   register Sinatra::AssetPack
+  enable :sessions
 
   assets do
     # My default directory is not app but public.

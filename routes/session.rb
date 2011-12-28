@@ -32,24 +32,27 @@ module Leaky::Routes #:nodoc:
     #
     # @param *Sinatra::Base* obj The server of this application.
     def self.included(obj)
+      # Route to the login page
       leaked_get(obj, :login)
 
+      # Login POST.
       obj.post '/login' do
         user = User.first(:name => params[:name])
         if user
           pass = BCrypt::Password.new(user.password_digest)
           if pass == params[:password]
-            @flash = { :notice => 'You\'re now logged in!' }
             auth_token = SecureRandom.urlsafe_base64
             response.set_cookie('auth_token', :value => auth_token)
-            erb :index
+            session[:flash] = { :notice => 'You\'re now logged in!' }
+            redirect '/'
           else
-            puts 'Wrong password'
+            session[:flash] = { :error => 'Wrong password' }
+            redirect '/login'
           end
         else
-          puts 'Cagada'
+          session[:flash] = { :error => 'User does not exist' }
+          redirect '/login'
         end
-        erb :index
       end
     end
   end

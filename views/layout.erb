@@ -24,7 +24,7 @@
   </div>
   <div class="wrapper">
     <div id="flash_container">
-      <% if defined? @flash %>
+      <% if (!@flash.nil? && defined? @flash) %>
         <% @flash.each do |key, msg| %>
           <div id="<%= "flash_#{key}" %>" class="flashy"><%= msg %></div>
         <% end %>
