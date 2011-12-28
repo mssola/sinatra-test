@@ -40,6 +40,8 @@ module Leaky::Routes #:nodoc:
           pass = BCrypt::Password.new(user.password_digest)
           if pass == params[:password]
             @flash = { :notice => 'You\'re now logged in!' }
+            auth_token = SecureRandom.urlsafe_base64
+            response.set_cookie('auth_token', :value => auth_token)
             erb :index
           else
             puts 'Wrong password'
