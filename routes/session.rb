@@ -30,13 +30,13 @@ module Leaky::Routes #:nodoc:
     ##
     # When included, define all the routing behind sessions.
     #
-    # @param *Sinatra::Base* obj The server of this application.
-    def self.included(obj)
+    # @param *Sinatra::Base* klass The server of this application.
+    def self.included(klass)
       # Route to the login page
-      leaked_get(obj, :login)
+      leaked_get(klass, :login)
 
       # Login POST.
-      obj.post '/login' do
+      klass.post '/login' do
         user = User.first(:name => params[:name])
         if user
           pass = BCrypt::Password.new(user.password_digest)

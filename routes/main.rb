@@ -26,12 +26,12 @@ module Leaky::Routes #:nodoc:
     ##
     # When included, define all the main routes.
     #
-    # @param *Sinatra::Base* obj The server of this application.
-    def self.included(obj)
-      leaked_get(obj, :index)
-      leaked_get(obj, :blog)
-      leaked_get(obj, :snippets)
-      leaked_get(obj, :contact)
+    # @param *Sinatra::Base* klass The server of this application.
+    def self.included(klass)
+      leaked_get(klass, :index)
+      leaked_get(klass, :blog)
+      leaked_get(klass, :snippets)
+      leaked_get(klass, :contact)
     end
   end
 end

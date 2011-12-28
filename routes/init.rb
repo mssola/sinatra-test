@@ -26,13 +26,13 @@ module Leaky #:nodoc:
     # When included, include also all the submodules that do the
     # real work and define some other routes for error handling.
     #
-    # @param *Sinatra::Base* obj The server of this application that wants
+    # @param *Sinatra::Base* klass The server of this application that wants
     # to include this module.
-    def self.included(obj)
-      obj.send :include, Leaky::Routes::Main
-      obj.send :include, Leaky::Routes::Session
+    def self.included(klass)
+      klass.send :include, Leaky::Routes::Main
+      klass.send :include, Leaky::Routes::Session
 
-      obj.not_found do
+      klass.not_found do
         session[:flash] = nil
         erb :not_found
       end
