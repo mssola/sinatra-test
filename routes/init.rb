@@ -43,20 +43,38 @@ module Leaky #:nodoc:
     # the logic of the submodules defined on other files.
     module Base
       ##
-      # Helper method for HTTP GET requests.
+      # When a submodule includes this, also extend the module with
+      # the methods inside the ClassMethods module.
       #
-      # @param *Sinatra::Base* obj The server of this application.
-      #
-      # @param *Symbol* action The action performed. The route to create
-      # will therefore have a "/#{action}" pattern (unless it's :index, case
-      # of which the root path will be taken). The view to render is expected
-      # to have the same name.
-      def leaked_get(obj, action)
-        aux = (action == :index) ? '' : action.to_s
-        obj.get "/#{aux}" do
-          @flash = session[:flash]
-          session[:flash] = nil
-          erb action
+      # @param *Module* md A module that includes this one.
+      def self.included(md)
+        md.extend ClassMethods
+      end
+
+      ##
+      # Redirect to the given @p route showing also a @p flash message.
+      def redirect_to(route, flash = {})
+        session[:flash] = flash
+        redirect route
+      end
+
+      module ClassMethods #:nodoc:
+        ##
+        # Helper method for HTTP GET requests.
+        #
+        # @param *Sinatra::Base* obj The server of this application.
+        #
+        # @param *Symbol* action The action performed. The route to create
+        # will therefore have a "/#{action}" pattern (unless it's :index, case
+        # of which the root path will be taken). The view to render is expected
+        # to have the same name.
+        def leaked_get(obj, action)
+          aux = (action == :index) ? '' : action.to_s
+          obj.get "/#{aux}" do
+            @flash = session[:flash]
+            session[:flash] = nil
+            erb action
+          end
         end
       end
     end

@@ -25,7 +25,7 @@ module Leaky::Routes #:nodoc:
   ##
   # Handle all the routing behind sessions.
   module Session
-    extend Leaky::Routes::Base
+    include Leaky::Routes::Base
 
     ##
     # When included, define all the routing behind sessions.
@@ -43,15 +43,12 @@ module Leaky::Routes #:nodoc:
           if pass == params[:password]
             auth_token = SecureRandom.urlsafe_base64
             response.set_cookie('auth_token', :value => auth_token)
-            session[:flash] = { :notice => 'You\'re now logged in!' }
-            redirect '/'
+            redirect_to '/', :notice => 'You\'re now logged in!'
           else
-            session[:flash] = { :error => 'Wrong password' }
-            redirect '/login'
+            redirect_to '/login', :error => 'Wrong password'
           end
         else
-          session[:flash] = { :error => 'User does not exist' }
-          redirect '/login'
+          redirect_to '/login', :error => 'User does not exist'
         end
       end
     end

@@ -21,7 +21,7 @@ module Leaky::Routes #:nodoc:
   ##
   # Handle all the routing of the most "standard" navigation features.
   module Main
-    extend Leaky::Routes::Base
+    include Leaky::Routes::Base
 
     ##
     # When included, define all the main routes.
