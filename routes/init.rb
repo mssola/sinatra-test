@@ -17,9 +17,6 @@
 #
 
 
-require 'flash'
-
-
 module Leaky #:nodoc:
   ##
   # Define all the logic behind the routing of this application. This module
@@ -56,7 +53,7 @@ module Leaky #:nodoc:
       def leaked_get(obj, action)
         aux = (action == :index) ? '' : action.to_s
         obj.get "/#{aux}" do
-          @flash = Leaky::Flash.new
+          @flash = []
           erb action
         end
       end

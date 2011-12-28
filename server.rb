@@ -20,8 +20,9 @@
 require 'sinatra'
 require 'sinatra/assetpack'
 
-$:.unshift(File.join(File.dirname(__FILE__), 'lib'))
+$:.unshift(File.dirname(__FILE__))
 require_relative 'routes/init'
+require_relative 'models/user'
 
 
 ##

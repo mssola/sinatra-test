@@ -17,6 +17,10 @@
 #
 
 
+require 'models/user'
+require 'bcrypt'
+
+
 module Leaky::Routes #:nodoc:
   ##
   # Handle all the routing behind sessions.
@@ -31,7 +35,19 @@ module Leaky::Routes #:nodoc:
       leaked_get(obj, :login)
 
       obj.post '/login' do
-        puts 'TODO'
+        user = User.first(:name => params[:name])
+        if user
+          pass = BCrypt::Password.new(user.password_digest)
+          if pass == params[:password]
+            @flash = { :notice => 'You\'re now logged in!' }
+            erb :index
+          else
+            puts 'Wrong password'
+          end
+        else
+          puts 'Cagada'
+        end
+        erb :index
       end
     end
   end
