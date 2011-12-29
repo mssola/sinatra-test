@@ -10,4 +10,5 @@ class User
   property :name, String
   property :password_digest, String
   property :email, String
+  property :auth_token, String
 end

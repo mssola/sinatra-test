@@ -35,14 +35,13 @@ module Leaky::Routes #:nodoc:
       # Route to the login page
       leaked_get(klass, :login)
 
-      # Login POST.
+      # Login POST
       klass.post '/login' do
         user = User.first(:name => params[:name])
         if user
           pass = BCrypt::Password.new(user.password_digest)
           if pass == params[:password]
-            auth_token = SecureRandom.urlsafe_base64
-            response.set_cookie('auth_token', :value => auth_token)
+            response.set_cookie('auth_token', value: user.auth_token)
             redirect_to '/', :notice => 'You\'re now logged in!'
           else
             redirect_to '/login', :error => 'Wrong password'
@@ -50,6 +49,12 @@ module Leaky::Routes #:nodoc:
         else
           redirect_to '/login', :error => 'User does not exist'
         end
+      end
+
+      # The Log out method
+      klass.get '/logout' do
+        response.delete_cookie 'auth_token'
+        redirect_to '/', :notice => 'Logged out'
       end
     end
   end

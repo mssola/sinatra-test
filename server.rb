@@ -24,6 +24,7 @@ require 'sinatra/assetpack'
 $:.unshift(File.dirname(__FILE__))
 require_relative 'routes/init'
 require_relative 'models/user'
+require_relative 'lib/view_helpers'
 
 
 ##
@@ -50,4 +51,7 @@ class Leaky::Server < Sinatra::Base
 
   # Do all the magic behind routes.
   include Leaky::Routes
+
+  # Include View Helpers
+  include Leaky::ViewHelpers
 end 
