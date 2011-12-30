@@ -9,24 +9,25 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <header>
+  <header>
+    <div class="wrapper">
       <div class="logo">
-        <a href="http://localhost:3000/"><img src="images/logo.png" border="0" /></a>
+        <a href="http://localhost:3000/"><img src="/favicon.ico" border="0" width="32" /></a>
       </div>
       <nav class="menu">
         <% if current_user %>
           <% gra = get_gravatar_of(current_user.email) %>
           <li><a href="/"><img src="<%= gra %>" height="20" /></a></li>
           <li><a href="/logout">Log out</a></li>
+        <% else %>
+          <li><a href="/">Home</a></li>
         <% end %>
-        <li><a href="/">Home</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/snippets">Code Snippets</a></li>
         <li><a href="/contact">Contact</a></li>
       </nav>
-    </header>
-  </div>
+    </div>
+  </header>
   <div class="wrapper">
     <div id="flash_container">
       <% if (!@flash.nil? && defined? @flash) %>
