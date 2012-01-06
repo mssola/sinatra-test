@@ -26,13 +26,13 @@ module Leaky #:nodoc:
     # When included, include also all the submodules that do the
     # real work and define some other routes for error handling.
     #
-    # @param *Sinatra::Base* klass The server of this application that wants
+    # @param *Sinatra::Base* base The server of this application that wants
     # to include this module.
-    def self.included(klass)
-      klass.send :include, Leaky::Routes::Main
-      klass.send :include, Leaky::Routes::Session
+    def self.included(base)
+      base.send :include, Leaky::Routes::Main
+      base.send :include, Leaky::Routes::Session
 
-      klass.not_found do
+      base.not_found do
         session[:flash] = nil
         erb :not_found
       end
@@ -46,9 +46,9 @@ module Leaky #:nodoc:
       # When a submodule includes this, also extend the module with
       # the methods inside the ClassMethods module.
       #
-      # @param *Module* md A module that includes this one.
-      def self.included(md)
-        md.extend ClassMethods
+      # @param *Module* base A module that includes this one.
+      def self.included(base)
+        base.extend ClassMethods
       end
 
       ##
