@@ -4,6 +4,7 @@
   <title>Leaky</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
   <%= css :app, :media => 'screen' %>
   <%= js  :app %>
 </head>
@@ -17,8 +18,10 @@
       <div class="topright">
         <% if current_user %>
           <% gra = get_gravatar_of(current_user.email) %>
-          <div class="avatar">
+          <div class="avatar" >
+            <span class="tip" title="Click me to log out!">
             <a href="/logout"><img src="<%= gra %>" height="20" /></a>
+            </span>
           </div>
         <% end %>
         <nav class="menu">
