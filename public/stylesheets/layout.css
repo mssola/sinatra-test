@@ -21,9 +21,28 @@ header {
   border-bottom:1px solid #cacaca;
 }
 
-.menu {
+.topright {
+  display:inline-block;
   float:right;
   text-align:right;
+  margin-top:-2px;
+}
+
+.avatar {
+  display:inline;
+  margin-right:12px;
+}
+
+.avatar img {
+  vertical-align:middle;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.menu {
+  display:inline;
+  margin-top:-5px;
 }
 
 .menu li {

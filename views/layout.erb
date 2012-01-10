@@ -14,18 +14,22 @@
       <div class="logo">
         <a href="http://localhost:3000/"><img src="/favicon.ico" border="0" width="32" /></a>
       </div>
-      <nav class="menu">
+      <div class="topright">
         <% if current_user %>
           <% gra = get_gravatar_of(current_user.email) %>
-          <li><a href="/"><img src="<%= gra %>" height="20" /></a></li>
-          <li><a href="/logout">Log out</a></li>
-        <% else %>
-          <li><a href="/">Home</a></li>
+          <div class="avatar">
+            <a href="/logout"><img src="<%= gra %>" height="20" /></a>
+          </div>
         <% end %>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/snippets">Code Snippets</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </nav>
+        <nav class="menu">
+          <% if current_user.nil? %>
+            <li><a href="/">Home</a></li>
+          <% end %>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/snippets">Code Snippets</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </nav>
+      </div>
     </div>
   </header>
   <div class="wrapper">
