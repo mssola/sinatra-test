@@ -39,7 +39,7 @@ module Leaky::Routes #:nodoc:
       klass.post '/login' do
         user = User.first(:name => params[:name])
         if user
-          pass = BCrypt::Password.new(user.password_digest)
+          pass = BCrypt::Password.new(user.password_hash)
           if pass == params[:password]
             response.set_cookie('auth_token', value: user.auth_token)
             redirect_to '/', :notice => 'You\'re now logged in!'

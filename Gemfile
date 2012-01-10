@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'sinatra'
 gem 'data_mapper'
-gem 'dm-sqlite-adapter'
+gem 'dm-postgres-adapter'
 gem 'yui-compressor'
 gem 'bcrypt-ruby'
 gem 'rack', :git => 'https://github.com/rack/rack'

@@ -11,7 +11,7 @@ password = ARGV.first
 (puts 'Submit a password, please'; exit) if password.nil?
 
 adapter = DataMapper.repository(:default).adapter
-sql = 'INSERT INTO users (name, email, password_digest, auth_token) VALUES (?, ?, ?, ?)'
+sql = 'INSERT INTO users (name, email, password_hash, auth_token) VALUES (?, ?, ?, ?)'
 auth_token = SecureRandom.urlsafe_base64
 adapter.execute(sql, 'mssola', 'mikisabate@gmail.com',
                 BCrypt::Password.create(password), auth_token)
