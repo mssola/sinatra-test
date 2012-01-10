@@ -33,7 +33,7 @@ module Leaky #:nodoc:
       base.send :include, Leaky::Routes::Session
 
       base.not_found do
-        session[:flash] = nil
+        $flash = nil
         erb :not_found
       end
     end
@@ -54,7 +54,7 @@ module Leaky #:nodoc:
       ##
       # Redirect to the given @p route showing also a @p flash message.
       def redirect_to(route, flash = {})
-        session[:flash] = flash
+        $flash = flash
         redirect route
       end
 
@@ -71,8 +71,8 @@ module Leaky #:nodoc:
         def leaked_get(obj, action)
           aux = (action == :index) ? '' : action.to_s
           obj.get "/#{aux}" do
-            @flash = session[:flash]
-            session[:flash] = nil
+            @flash = $flash
+            $flash = nil
             erb action
           end
         end

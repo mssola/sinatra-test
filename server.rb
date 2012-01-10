@@ -33,7 +33,6 @@ require_relative 'lib/view_helpers'
 # all the basic stuff of this application so we can be happy.
 class Leaky::Server < Sinatra::Base
   register Sinatra::AssetPack
-  enable :sessions
 
   assets do
     # My default directory is not app but public.
