@@ -1,16 +1,11 @@
 
-require 'data_mapper'
+require 'lib/database'
 
-DataMapper.setup :default, adapter: 'postgres', host: 'localhost',
-                           username: 'mssola', password: ENV['password'],
-                           database: 'leaky'
 
-class User
-  include DataMapper::Resource
-
-  property :id, Serial
-  property :name, String
-  property :password_hash, String
-  property :email, String
-  property :auth_token, String
+##
+# This is the User model. It's just a subclass of Leaky::Resource that
+# defines the properties that can be found at the 'users' table.
+class User < Leaky::Resource
+  property_serial :id
+  property_string :name, :password_hash, :email, :auth_token
 end
